@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="msr-gateway" />
+        <module name="renren-fast" />
+        <module name="msr-car" />
+        <module name="msr-common" />
+        <module name="msr-third-party" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="msr-car" target="1.8" />
+      <module name="msr-common" target="1.8" />
+      <module name="msr-common (1)" target="1.8" />
+      <module name="msr-gateway" target="1.8" />
+      <module name="msr-parent" target="1.8" />
+      <module name="msr-third-party" target="1.8" />
+      <module name="renren-fast" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="msr-car" options="-parameters" />
+      <module name="msr-common" options="-parameters" />
+      <module name="msr-common (1)" options="-parameters" />
+      <module name="msr-gateway" options="-parameters" />
+      <module name="msr-third-party" options="-parameters" />
+      <module name="renren-fast" options="-parameters" />
+    </option>
+  </component>
+</project>
