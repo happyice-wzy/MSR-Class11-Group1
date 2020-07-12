@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/MSR-Class11-Group1.iml" filepath="$PROJECT_DIR$/.idea/MSR-Class11-Group1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msr-car/msr-car.iml" filepath="$PROJECT_DIR$/msr-car/msr-car.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msr-common/msr-common.iml" filepath="$PROJECT_DIR$/msr-common/msr-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msr-gateway/msr-gateway.iml" filepath="$PROJECT_DIR$/msr-gateway/msr-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msr-parent/msr-parent.iml" filepath="$PROJECT_DIR$/msr-parent/msr-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/msr-third-party/msr-third-party.iml" filepath="$PROJECT_DIR$/msr-third-party/msr-third-party.iml" />
+      <module fileurl="file://$PROJECT_DIR$/renren-fast/renren-fast.iml" filepath="$PROJECT_DIR$/renren-fast/renren-fast.iml" />
+    </modules>
+  </component>
+</project>
