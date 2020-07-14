@@ -2,7 +2,12 @@ spring:
   cloud:
     gateway:
       routes:
-
+        - id: car_route
+          uri: lb://msr-car
+          predicates:
+            - Path=/api/car/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
 
         - id: third_party_route
           uri: lb://msr-third-party

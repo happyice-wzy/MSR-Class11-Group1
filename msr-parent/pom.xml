@@ -41,6 +41,7 @@
     <!--加载子模块-->
     <modules>
         <module>../msr-common</module>
+        <module>../msr-car</module>
         <module>../renren-fast</module>
         <module>../msr-gateway</module>
         <module>../msr-third-party</module>
