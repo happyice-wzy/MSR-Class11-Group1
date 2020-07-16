@@ -1,9 +1,9 @@
 package com.msr.car.service;
 
-import com.msr.car.entity.Model;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-
-import java.util.List;
+import com.msr.car.entity.Model;
+import com.msr.car.query.ModelQuery;
 
 /**
  * <p>
@@ -14,5 +14,5 @@ import java.util.List;
  * @since 2020-07-13
  */
 public interface ModelService extends IService<Model> {
-    public List<Model> getModel();
+    void pageQuery(Page<Model> pageParam, ModelQuery modelQuery);
 }
