@@ -14,4 +14,6 @@ import java.util.List;
  */
 public interface StoreService extends IService<Store> {
     List<Store> listWithTree();
+    //批量删除
+    void removeMenuByIds(List<Long> asList);
 }

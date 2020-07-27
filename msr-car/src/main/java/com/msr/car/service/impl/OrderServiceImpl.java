@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 /**
  * <p>
  *  服务实现类
- * </p >
+ * </p>
  *
  * @author tom
  * @since 2020-07-13
@@ -25,7 +25,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
     public void pageQuery(Page<Order> pageParam, OrderQuery orderQuery) {
         //条件构造器
         QueryWrapper<Order> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByAsc("sort");//字段而不是属性
+        queryWrapper.orderByAsc("id");
 
         if (orderQuery == null){
             baseMapper.selectPage(pageParam, queryWrapper);
@@ -36,7 +36,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
 
 
         if (!StringUtils.isEmpty(id)) {
-            queryWrapper.like("id", id);
+            queryWrapper.eq("id", id);
         }
 
         baseMapper.selectPage(pageParam, queryWrapper);

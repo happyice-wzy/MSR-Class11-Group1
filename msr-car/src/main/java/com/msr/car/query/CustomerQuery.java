@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class CustomerQuery implements Serializable {
     private static final long serialVersionUID = 1L;
     @ApiModelProperty(value ="客户名称，模糊查询" )
-    private String name;
+    private String customerName;
 
 
     @ApiModelProperty(value = "查询开始时间", example = "2019-01-01 10:10:10")

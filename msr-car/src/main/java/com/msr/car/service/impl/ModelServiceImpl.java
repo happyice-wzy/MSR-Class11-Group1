@@ -10,6 +10,10 @@ import com.msr.car.service.ModelService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  服务实现类
@@ -49,5 +53,18 @@ public class ModelServiceImpl extends ServiceImpl<ModelMapper, Model> implements
         }
 
         baseMapper.selectPage(pageParam, queryWrapper);
+    }
+
+    @Override
+    public Map<String, Object> getChartData() {
+
+        QueryWrapper<Model> modelQueryWrapper = new QueryWrapper<>();
+        modelQueryWrapper.select("model_brand");
+
+        List<Model> modelList = baseMapper.selectList(modelQueryWrapper);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("modelList", modelList);
+        return map;
     }
 }

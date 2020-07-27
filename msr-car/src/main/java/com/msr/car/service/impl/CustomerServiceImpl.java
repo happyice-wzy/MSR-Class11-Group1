@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 /**
  * <p>
  *  服务实现类
- * </p >
+ * </p>
  *
  * @author tom
  * @since 2020-07-14
@@ -22,19 +22,19 @@ import org.springframework.util.StringUtils;
 public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> implements CustomerService {
 
     @Override
-    public void pageQuery(Page<Customer> pageParam, CustomerQuery teacherQuery) {
+    public void pageQuery(Page<Customer> pageParam, CustomerQuery customerQuery) {
         QueryWrapper<Customer> queryWrapper = new QueryWrapper<>();
-        queryWrapper.orderByAsc("sort");
-        if(teacherQuery == null){
+        queryWrapper.orderByAsc("id");
+        if(customerQuery == null){
             baseMapper.selectPage(pageParam,queryWrapper);
             return;
         }
-        String name = teacherQuery.getName();
+        String customerName = customerQuery.getCustomerName();
 
-        String begin = teacherQuery.getBegin();
-        String end = teacherQuery.getEnd();
-        if(!StringUtils.isEmpty(name)){
-            queryWrapper.like("name",name);
+        String begin = customerQuery.getBegin();
+        String end = customerQuery.getEnd();
+        if(!StringUtils.isEmpty(customerName)){
+            queryWrapper.like("customer_name",customerName);
         }
 
         if (!StringUtils.isEmpty(begin)){

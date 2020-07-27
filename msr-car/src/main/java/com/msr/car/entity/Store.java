@@ -33,7 +33,7 @@ public class Store implements Serializable {
     private String id;
 
     @ApiModelProperty(value = "区域名")
-    private String stroeArea;
+    private String storeArea;
 
     @ApiModelProperty(value = "门店地址")
     private String storeAddress;

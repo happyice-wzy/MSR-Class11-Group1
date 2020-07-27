@@ -47,21 +47,21 @@ public class OrderController {
             @ApiParam(name = "ids", value = "订单ID数组", required = true)
             @RequestBody String[] ids){
         orderService.removeByIds(Arrays.asList(ids));
+        System.out.println("ids:" + ids);
         return R.ok();
     }
 
     @ApiOperation(value = "新增订单")
-    @PostMapping
+    @PostMapping("/save")
     public R save(
-            @ApiParam(name = "order", value = "订单对象", required = true)
-            @RequestBody Order order){
-
+        @ApiParam(name = "order", value = "订单对象", required = true)
+        @RequestBody Order order){
         orderService.save(order);
         return R.ok();
     }
 
     @ApiOperation(value = "根据ID查询订单")
-    @GetMapping("{id}")
+    @GetMapping("/info/{id}")
     public R getById(
             @ApiParam(name = "id", value = "订单ID", required = true)
             @PathVariable String id){
@@ -71,15 +71,15 @@ public class OrderController {
     }
 
     @ApiOperation(value = "根据ID修改订单")
-    @PutMapping("{id}")
+    @PutMapping("/update")
     public R updateById(
-            @ApiParam(name = "id", value = "订单ID", required = true)
-            @PathVariable String id,
+            //@ApiParam(name = "id", value = "订单ID", required = true)
+            //@PathVariable String id,
 
-            @ApiParam(name = "order", value = "讲师对象", required = true)
+            @ApiParam(name = "order", value = "订单对象", required = true)
             @RequestBody Order order){
 
-        order.setId(id);
+       //order.setId(id);
         orderService.updateById(order);
         return R.ok();
     }
@@ -88,7 +88,7 @@ public class OrderController {
     @GetMapping("{page}/{limit}")
     public R pageQuery(
             @ApiParam(name = "orderQuery", value = "查询对象", required = false)
-                    OrderQuery orderQuery,
+            OrderQuery orderQuery,
 
             @ApiParam(name = "page", value = "当前页码", required = true)
             @PathVariable Long page,

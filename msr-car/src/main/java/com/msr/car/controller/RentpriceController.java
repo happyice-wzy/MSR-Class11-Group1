@@ -39,7 +39,7 @@ public class RentpriceController {
     @DeleteMapping("/delete")
     public R removeByIds(
             @ApiParam(name = "ids", value = "租金ID", required = true)
-            @RequestBody Long[] ids){
+            @RequestBody String[] ids){
         rentpriceService.removeByIds(Arrays.asList(ids));
         return R.ok();
     }
@@ -60,7 +60,14 @@ public class RentpriceController {
             @RequestBody Rentprice rentprice) {
         rentpriceService.save(rentprice);
         return R.ok();
-
+    }
+    @ApiOperation(value = "根据ID查询租金")
+    @GetMapping("/info/{id}")
+    public R getById(
+            @ApiParam(name = "id", value = "车型ID", required = true)
+            @PathVariable String id){
+        Rentprice rentprice = rentpriceService.getById(id);
+        return R.ok().data("item", rentprice);
     }
 
 }

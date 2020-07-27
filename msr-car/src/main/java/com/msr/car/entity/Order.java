@@ -1,18 +1,14 @@
 package com.msr.car.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -38,6 +34,9 @@ public class Order implements Serializable {
     @ApiModelProperty(value = "客户编号")
     private String customerId;
 
+    @ApiModelProperty(value = "客户姓名")
+    private String customerName;
+
     @ApiModelProperty(value = "车辆品牌")
     private String carBrand;
 
@@ -56,9 +55,6 @@ public class Order implements Serializable {
     @ApiModelProperty(value = "实际还车时间")
     private Date orderAEnd;
 
-    @ApiModelProperty(value = "基本消费")
-    private Float orderBasic;
-
     @ApiModelProperty(value = "超时金额")
     private Float orderTimeout;
 
@@ -74,8 +70,12 @@ public class Order implements Serializable {
     @ApiModelProperty(value = "总消费金额")
     private Float orderSum;
 
-    @ApiModelProperty(value = "租赁状态（1、已租出2、在库）")
+    @ApiModelProperty(value = "租赁状态（0、已租出 1、在库）")
     private Boolean priceStatus;
+
+    @ApiModelProperty(value = "评价")
+    private String orderDesc;
+
 
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)

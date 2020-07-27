@@ -1,7 +1,9 @@
 package com.msr.car.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.msr.car.entity.Violate;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.msr.car.query.ViolateQuery;
 
 /**
  * <p>
@@ -12,5 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-07-13
  */
 public interface ViolateService extends IService<Violate> {
+    void pageQuery(Page<Violate> pageParam, ViolateQuery violateQuery);
 
 }

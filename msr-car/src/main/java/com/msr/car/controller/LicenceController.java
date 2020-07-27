@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ import java.util.List;
  * </p>
  *
  * @author tom
- * @since 2020-07-13
+ * @since 2020-07-14
  */
 @Api(description="驾驶证管理")
 @RestController
@@ -35,11 +36,13 @@ public class LicenceController {
     }
 
     @ApiOperation(value = "根据ID删除驾驶证")
-    @DeleteMapping("{id}")
+    @DeleteMapping("/delete")
     public R removeById(
-            @ApiParam(name = "id", value = "驾驶证ID", required = true)
-            @PathVariable String id){
-        licenceService.removeById(id);
+            @ApiParam(name = "ids", value = "驾驶证ID数组", required = true)
+            @RequestBody String[] ids){
+        //ids数组参数: 把数组类型转换为集合类型 Arrays.asList(数组)=集合
+        //removeByIds(集合参数)
+        licenceService.removeByIds(Arrays.asList(ids));
         return R.ok();
     }
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -86,7 +87,7 @@ public class ModelController {
         return R.ok();
     }
 
-    @ApiOperation(value = "根据ID查询讲师")
+    @ApiOperation(value = "根据ID查询车型")
     @GetMapping("/info/{id}")
     public R getById(
             @ApiParam(name = "id", value = "车型ID", required = true)
@@ -102,6 +103,12 @@ public class ModelController {
             @RequestBody Model model){
         modelService.save(model);
         return R.ok();
+    }
+
+    @GetMapping("/show-chart")
+    public R showChart(){
+        Map<String, Object> map = modelService.getChartData();
+        return R.ok().data(map);
     }
 }
 

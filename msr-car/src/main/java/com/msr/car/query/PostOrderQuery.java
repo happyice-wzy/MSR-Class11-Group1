@@ -2,39 +2,24 @@ package com.msr.car.query;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
-import com.msr.car.entity.Order;
+
+import com.msr.car.entity.PostOrder;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
-
-@ApiModel(value = "Teacher查询对象",description = "讲师查询对象封装")
+@ApiModel(value = "续租订单查询对象",description = "续租订单查询对象封装")
 @Data
-public class OrderQuery extends Wrapper<Order> implements Serializable {
+public class PostOrderQuery extends Wrapper<PostOrder> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "根据订单id查询")
+    @ApiModelProperty(value = "根据续租主订单id查询")
     private  String id;
 
-    //@ApiModelProperty(value = "头衔 1.高级讲师 2.首席讲师")
-    //private Integer level;
 
-    //@ApiModelProperty(value = "查询开始时间")
-    //private String begin;
-
-    //@ApiModelProperty(value = "查询结束时间")
-    //private String end;
-
-    /**
-     * <p>
-     * 实体对象（子类实现）
-     * </p>
-     *
-     * @return 泛型 T
-     */
     @Override
-    public Order getEntity() {
+    public PostOrder getEntity() {
         return null;
     }
 
@@ -53,4 +38,6 @@ public class OrderQuery extends Wrapper<Order> implements Serializable {
     public String getSqlSegment() {
         return null;
     }
+
+
 }

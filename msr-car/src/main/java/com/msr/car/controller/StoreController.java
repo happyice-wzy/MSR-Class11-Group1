@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
+
 /**
  * <p>
  *  前端控制器
@@ -37,15 +38,35 @@ public class StoreController {
         return R.ok().data("data", listTree);
     }
 
+    @ApiOperation(value = "所有门店列表")
+    @GetMapping("/list")
+    public R list1(){
+        List<Store> storeList = storeService.list(null);
+        return R.ok().data("list", storeList);
+    }
 
+//    @ApiOperation(value = "根据ID删除门店")
+//    @DeleteMapping("/delete")
+//    public R removeById(
+//            @ApiParam(name = "ids", value = "门店ID", required = true)
+//            @RequestBody Long[] ids){
+//        //ids数组参数   :把数组类型转换为集合类型     Arrays.asList(数组) = 集合
+//        //removeByIds(集合参数)
+//        boolean flag =  storeService.removeByIds(Arrays.asList(ids));
+//        return R.ok();
+//    }
+
+
+    /**
+     * 删除
+     * SpringMVC自动将请求体的数据（json），转为对应的对象
+     */
     @ApiOperation(value = "根据ID删除门店")
     @DeleteMapping("/delete")
-    public R removeById(
+    public R removeByIds(
             @ApiParam(name = "ids", value = "门店ID", required = true)
-            @RequestBody Long[] ids){
-        //ids数组参数   :把数组类型转换为集合类型     Arrays.asList(数组) = 集合
-        //removeByIds(集合参数)
-        boolean flag =  storeService.removeByIds(Arrays.asList(ids));
+            @RequestBody String[] ids){
+        storeService.removeByIds(Arrays.asList(ids));
         return R.ok();
     }
 
@@ -69,7 +90,7 @@ public class StoreController {
             @PathVariable String id){
 
         Store store = storeService.getById(id);
-        return R.ok().data("item", store);
+        return R.ok().data("data", store);
     }
 
     @ApiOperation(value = "根据ID修改门店")
