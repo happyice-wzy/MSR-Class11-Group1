@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -68,6 +69,13 @@ public class InfoController {
             @PathVariable String id){
         Info info = infoService.getById(id);
         return R.ok().data("item", info);
+    }
+
+    @ApiOperation(value = "统计表")
+    @GetMapping("/show-chart/{begin}/{end}")
+    public R showChart(@PathVariable String begin,@PathVariable String end){
+        Map<String, List> map = infoService.getChartData(begin, end);
+        return  R.ok().data("map",map);
     }
 }
 

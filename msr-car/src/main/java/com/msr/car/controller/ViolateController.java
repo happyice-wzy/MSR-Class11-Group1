@@ -8,6 +8,7 @@ import com.msr.car.service.ViolateService;
 import com.msr.common.constants.ResultCodeEnum;
 import com.msr.common.exception.MSRException;
 import com.msr.common.vo.R;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -24,6 +26,7 @@ import java.util.List;
  * @author tom
  * @since 2020-07-13
  */
+@Api(description="违章管理")
 @RestController
 @RequestMapping("/car/violate")
 public class ViolateController {
@@ -98,6 +101,12 @@ public class ViolateController {
         long total = pageParam.getTotal();   //总记录数
 
         return  R.ok().data("total", total).data("rows", records);//返回数据
+    }
+
+    @GetMapping("show-chart/{begin}/{end}")
+    public R showChart(@PathVariable String begin,@PathVariable String end){
+        Map<String,List> map = violateService.getChartData(begin, end);
+        return R.ok().data("map",map);
     }
 
 

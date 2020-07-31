@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -73,13 +74,8 @@ public class OrderController {
     @ApiOperation(value = "根据ID修改订单")
     @PutMapping("/update")
     public R updateById(
-            //@ApiParam(name = "id", value = "订单ID", required = true)
-            //@PathVariable String id,
-
             @ApiParam(name = "order", value = "订单对象", required = true)
             @RequestBody Order order){
-
-       //order.setId(id);
         orderService.updateById(order);
         return R.ok();
     }
@@ -102,11 +98,17 @@ public class OrderController {
         }
 
         Page<Order> pageParam = new Page<>(page, limit);
-        //teacherService.page(pageParam, null);
         orderService.pageQuery(pageParam,orderQuery);
         List<Order> records = pageParam.getRecords();//当前页的集合数据
         long total = pageParam.getTotal();   //总记录数
         return  R.ok().data("total", total).data("rows", records);
+    }
+
+    @ApiOperation(value = "统计表")
+    @GetMapping("/show-chart/{begin}/{end}")
+    public R showChart(@PathVariable String begin,@PathVariable String end){
+        Map<String, List> map = orderService.getChartData(begin, end);
+        return  R.ok().data("map",map);
     }
 }
 

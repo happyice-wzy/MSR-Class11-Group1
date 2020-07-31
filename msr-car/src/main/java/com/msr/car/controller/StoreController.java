@@ -3,15 +3,19 @@ package com.msr.car.controller;
 
 import com.msr.car.entity.Store;
 import com.msr.car.service.StoreService;
+import com.msr.common.constants.ResultCodeEnum;
+import com.msr.common.exception.MSRException;
 import com.msr.common.vo.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -102,6 +106,30 @@ public class StoreController {
         return R.ok();
     }
 
+    @ApiOperation(value = "Excel批量导入")
+    @PostMapping("/import")
+    public R batchImport(
+            @ApiParam(name = "file", value = "Excel文件", required = true)
+            @RequestParam("file") MultipartFile file) {
 
+        try{
+            List<String> errorMsg = storeService.batchImport(file);
+            if(errorMsg.size() == 0){
+                return R.ok().message("批量导入成功");
+            }else{
+                return R.error().message("部分数据导入失败").data("errorMsgList", errorMsg);
+            }
+
+        }catch (Exception e){
+            //无论哪种异常，只要是在excel导入时发生的，一律用转成GuliException抛出
+            throw new MSRException(ResultCodeEnum.EXCEL_DATA_IMPORT_ERROR);
+        }
+    }
+    @ApiOperation(value = "统计表")
+    @GetMapping("/show-chart/{begin}/{end}")
+    public R showChart(@PathVariable String begin,@PathVariable String end){
+        Map<String, List> map = storeService.getChartData(begin, end);
+        return  R.ok().data("map",map);
+    }
 }
 
